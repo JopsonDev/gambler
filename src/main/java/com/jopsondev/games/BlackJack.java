@@ -17,14 +17,14 @@ public class BlackJack {
     }
 
     public void shuffle() {
-        String deckType = "A, K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1";
+        String deckType = "A, K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2";
         String suit = "Heart, Spade, Diamond, Club";
 
         String[] card = deckType.split(",");
         String[] suitCard = suit.split(",");
         int x = 52 * 6;
         while (x > 0) {
-            for (int i = 13; i >= 0; i--) {
+            for (int i = 12; i >= 0; i--) {
                 for (int s = 3; s >= 0; s--) {
                     deck.add(card[i] + " " + suitCard[s]);
                     x--;
@@ -74,7 +74,7 @@ public class BlackJack {
     }
 
     public void hitOrStand(Wallet player, Scanner scanner) {
-        List<Integer> totalList = findValue(player);
+        List<Integer> totalList;
         int total = totalTrueValue(player);
         System.out.println(total);
         while (total < 21) {
@@ -83,7 +83,13 @@ public class BlackJack {
 
             if (input.equalsIgnoreCase("hit")) {
                 saveHand(player, 1);
+                totalList = findValue(player);
                 total = totalTrueValue(player);
+
+                if (total > 21){
+                    total = aceAdjuster(total, totalList);
+                }
+
                 System.out.println(player.getHand());
                 System.out.println(total);
             } else if (input.equalsIgnoreCase("Stand")) {
@@ -92,22 +98,23 @@ public class BlackJack {
                 System.out.println("invalid input");
             }
         }
-        while (total > 21) {
-            if (totalList.contains(11)) {
-                int change = totalList.indexOf(11);
-                totalList.set(change, 1);
-
-                total = 0;
-                for (int num : totalList) {
-                    total += num;
-                }
-            } else {
-                System.out.println(total);
-                System.out.println("BUST");
-                break;
-            }
+        if (total > 21){
+            System.out.println("BUST");
         }
         System.out.println("Total: " + total);
+    }
+
+    public int aceAdjuster(int total, List<Integer> totalList){
+        while (total > 21 && totalList.contains(11)) {
+            int change = totalList.indexOf(11);
+            totalList.set(change, 1);
+
+            total = 0;
+            for (int num : totalList) {
+                total += num;
+            }
+        }
+        return total;
     }
 
     public void dealerStarting(Wallet hand) {
@@ -124,15 +131,7 @@ public class BlackJack {
             totalList = findValue(player);
             total = totalTrueValue(player);
 
-            while (total > 21 && totalList.contains(11)) {
-                int change = totalList.indexOf(11);
-                totalList.set(change, 1);
-
-                total = 0;
-                for (int num : totalList) {
-                    total += num;
-                }
-            }
+            total = aceAdjuster(total,totalList);
 
             System.out.println(player.getHand());
             System.out.println("Dealer " + total);
