@@ -27,10 +27,13 @@ public class CasinoGame {
 
     public void runBlackJack(Wallet player, Scanner scanner){
         BlackJack bj = new BlackJack();
+        Wallet dealer = new Wallet("Dealer", 100000);
         bj.shuffle();
+        bj.dealerStarting(dealer);
         bj.saveHand(player, 2);
         System.out.println(player.getHand());
         bj.findValue(player);
         bj.hitOrStand(player, scanner);
+        bj.dealerPlay(dealer);
     }
 }

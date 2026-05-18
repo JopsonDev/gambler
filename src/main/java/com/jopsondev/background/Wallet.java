@@ -26,6 +26,10 @@ public class Wallet {
         return hand;
     }
 
+    public void setHand(List<String> hand) {
+        this.hand = hand;
+    }
+
     public void setBalance(double balance) {
         this.balance = balance;
     }
