@@ -2,10 +2,9 @@ package com.jopsondev;
 
 import java.util.Scanner;
 
-public class UserInterface {
+public class UserInterface extends CasinoGame {
     public void display(){
         Scanner scanner = new Scanner(System.in);
-        CasinoGame game = new CasinoGame();
 
         System.out.println("New User please Deposit an amount and add name.");
         System.out.println("Name: ");
@@ -26,8 +25,8 @@ public class UserInterface {
         scanner.nextLine();
 
         switch (input){
-            case 1 -> game.RunSlots(player, scanner);
-            case 2 -> game.runRoulette(player, scanner);
+            case 1 -> runSlots(player, scanner);
+            case 2 -> runRoulette(player, scanner);
             case 3 -> System.out.println("==========");
             case 4 -> System.out.println("==========");
             default -> System.out.println("==========");
