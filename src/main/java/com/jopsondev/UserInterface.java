@@ -20,7 +20,7 @@ public class UserInterface extends CasinoGame {
         System.out.println("Welcome! Please Make a Selection");
         System.out.println("1). Slots");
         System.out.println("2). Roulette");
-        System.out.println("3). TBA");
+        System.out.println("3). BlackJack");
         System.out.println("4). TBA");
         System.out.println("Input: ");
         int input = scanner.nextInt();
@@ -29,7 +29,7 @@ public class UserInterface extends CasinoGame {
         switch (input){
             case 1 -> runSlots(player, scanner);
             case 2 -> runRoulette(player, scanner);
-            case 3 -> System.out.println("==========");
+            case 3 -> runBlackJack(player, scanner);
             case 4 -> System.out.println("==========");
             default -> System.out.println("==========");
         }

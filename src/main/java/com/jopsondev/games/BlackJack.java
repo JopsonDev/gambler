@@ -44,17 +44,35 @@ public class BlackJack {
         return hand;
     }
 
+    public int findValue(Wallet player){
+        int total = 0;
+        for(int i = 0; i < hand.size(); i++) {
+            int num;
+            String[] value = hand.get(i).trim().split(" ");
+            switch (value[0]){
+                case "A" -> num = 11;
+                case "K", "Q", "J" -> num = 10;
+                default -> num = Integer.parseInt(value[0]);
+            }
+            total += num;
+        }
+        return total;
+    }
+
     public void saveHand(Wallet player, int i){
         player.getCurrentHand(deal(i));
     }
 
     public void hitOrStand(Wallet player, Scanner scanner){
-        while(true) {
-            System.out.println("Hit or Stand");
+        int total = findValue(player);
+        System.out.println(total);
+        while(total < 21) {
+            System.out.print("Hit or Stand: ");
             String input = scanner.nextLine();
 
             if(input.equalsIgnoreCase("hit")){
                 saveHand(player, 1);
+                total = findValue(player);
                 System.out.println(player.getHand());
             } else if (input.equalsIgnoreCase("Stand")){
                 return;
@@ -62,5 +80,10 @@ public class BlackJack {
                 System.out.println("invalid input");
             }
         }
+        if(total > 21){
+            System.out.println(total);
+            System.out.println("BUST");
+        }
+        System.out.println("Total: " + total);
     }
 }

@@ -30,6 +30,7 @@ public class CasinoGame {
         bj.shuffle();
         bj.saveHand(player, 2);
         System.out.println(player.getHand());
+        bj.findValue(player);
         bj.hitOrStand(player, scanner);
     }
 }
