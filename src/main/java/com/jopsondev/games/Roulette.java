@@ -1,11 +1,14 @@
-package com.jopsondev;
+package com.jopsondev.games;
+
+import com.jopsondev.background.IsBet;
+import com.jopsondev.background.Wallet;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Roulette implements IsBet{
+public class Roulette implements IsBet {
     private List<Integer> numbers;
     List<Double> bets;
     Random rand = new Random();

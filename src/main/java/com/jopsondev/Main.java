@@ -1,5 +1,7 @@
 package com.jopsondev;
 
+import com.jopsondev.background.Wallet;
+
 import java.util.Scanner;
 
 public class Main {
@@ -17,7 +19,8 @@ public class Main {
         //Roulette r = new Roulette();
         //r.spin();
         //r.bet(player1,scanner);
-        game.runRoulette(player1, scanner);
+        //game.runRoulette(player1, scanner);
+        game.runBlackJack(player1, scanner);
 
     }
 }

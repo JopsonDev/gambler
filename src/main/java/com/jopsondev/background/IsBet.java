@@ -1,4 +1,4 @@
-package com.jopsondev;
+package com.jopsondev.background;
 
 import java.util.Scanner;
 

@@ -1,9 +1,12 @@
-package com.jopsondev;
+package com.jopsondev.games;
+
+import com.jopsondev.background.IsBet;
+import com.jopsondev.background.Wallet;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Slot implements IsBet{
+public class Slot implements IsBet {
     public int reels() {
       int r1 = result();
       int r2 = result();

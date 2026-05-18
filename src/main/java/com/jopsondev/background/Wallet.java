@@ -1,12 +1,17 @@
-package com.jopsondev;
+package com.jopsondev.background;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Wallet {
     private double balance;
     private String name;
+    private List<String> hand;
 
     public Wallet(String name, double balance) {
         this.balance = balance;
         this.name = name;
+        this.hand = new ArrayList<String>();
     }
 
     public double getBalance() {
@@ -15,6 +20,10 @@ public class Wallet {
 
     public String getName() {
         return name;
+    }
+
+    public List<String> getHand() {
+        return hand;
     }
 
     public void setBalance(double balance) {
@@ -27,5 +36,9 @@ public class Wallet {
 
     public double lose(double amount){
         return this.balance -= amount;
+    }
+
+    public void getCurrentHand(List<String> hand){
+        this.hand = hand;
     }
 }

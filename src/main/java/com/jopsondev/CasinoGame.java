@@ -1,5 +1,10 @@
 package com.jopsondev;
 
+import com.jopsondev.background.Wallet;
+import com.jopsondev.games.BlackJack;
+import com.jopsondev.games.Roulette;
+import com.jopsondev.games.Slot;
+
 import java.util.Scanner;
 
 public class CasinoGame {
@@ -18,5 +23,13 @@ public class CasinoGame {
         player.setBalance(player.getBalance() - bet);
         player.setBalance(player.getBalance() + win);
         System.out.println(player.getBalance());
+    }
+
+    public void runBlackJack(Wallet player, Scanner scanner){
+        BlackJack bj = new BlackJack();
+        bj.shuffle();
+        bj.saveHand(player, 2);
+        System.out.println(player.getHand());
+        bj.hitOrStand(player, scanner);
     }
 }

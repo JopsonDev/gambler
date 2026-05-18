@@ -1,5 +1,7 @@
 package com.jopsondev;
 
+import com.jopsondev.background.Wallet;
+
 import java.util.Scanner;
 
 public class UserInterface extends CasinoGame {
