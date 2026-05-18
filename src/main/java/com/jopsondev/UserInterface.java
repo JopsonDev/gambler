@@ -19,7 +19,7 @@ public class UserInterface {
         System.out.println("Welcome! Please Make a Selection");
         System.out.println("1). Slots");
         System.out.println("2). Roulette");
-        System.out.println("3#. TBA");
+        System.out.println("3). TBA");
         System.out.println("4). TBA");
         System.out.println("Input: ");
         int input = scanner.nextInt();

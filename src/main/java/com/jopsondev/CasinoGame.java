@@ -12,7 +12,9 @@ public class CasinoGame {
     }
     public void runRoulette(Wallet player, Scanner scanner){
         Roulette roulette = new Roulette();
-        double win = roulette.bet(player, scanner);
+        double bet = roulette.bet(player, scanner);
+        double win = roulette.win(player, 0, 0);
+        player.setBalance(player.getBalance() - bet);
         player.setBalance(player.getBalance() + win);
         System.out.println(player.getBalance());
     }

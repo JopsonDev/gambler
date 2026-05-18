@@ -14,9 +14,10 @@ public class Main {
         //System.out.println(player1.getBalance());*/
         CasinoGame game = new CasinoGame();
         //game.RunSlots(player1, scanner);
-        Roulette r = new Roulette();
-        r.spin();
-        r.bet(player1,scanner);
+        //Roulette r = new Roulette();
+        //r.spin();
+        //r.bet(player1,scanner);
+        game.runRoulette(player1, scanner);
 
     }
 }

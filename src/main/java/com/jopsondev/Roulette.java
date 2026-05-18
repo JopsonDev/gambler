@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Roulette implements IsBet{
+    private List<Integer> numbers;
+    List<Double> bets;
     Random rand = new Random();
 
     public int spin(){
@@ -17,8 +19,8 @@ public class Roulette implements IsBet{
 
     @Override
     public double bet(Wallet player, Scanner scanner) {
-        List<Integer> numbers = new ArrayList<>();
-        List<Double> bets = new ArrayList<>();
+        this.numbers = new ArrayList<>();
+        this.bets = new ArrayList<>();
         while(true) {
             System.out.println("What number would you like to bet on: ");
             numbers.add(scanner.nextInt());
@@ -33,6 +35,15 @@ public class Roulette implements IsBet{
                 break;
             }
         }
+        double totalBet = 0;
+        for (Double bet : bets) {
+            totalBet += bet;
+        }
+        return totalBet;
+    }
+
+    @Override
+    public double win(Wallet player, int score, double bet) {
         int result = spin();
         double winnings = 0;
         for (int i = 0; i < numbers.size(); i++){
@@ -40,12 +51,7 @@ public class Roulette implements IsBet{
                 winnings = winnings + (bets.get(i) * 37);
             }
         }
-        System.out.println(winnings);
+        System.out.println("Win: " + winnings);
         return winnings;
-    }
-
-    @Override
-    public double win(Wallet player, int score, double bet) {
-        return 0;
     }
 }
