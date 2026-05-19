@@ -16,22 +16,25 @@ public class UserInterface extends CasinoGame {
         scanner.nextLine();
 
         Wallet player = new Wallet(name, deposit);
+        while(true) {
+            System.out.println("Welcome! Please Make a Selection");
+            System.out.println("1). Slots");
+            System.out.println("2). Roulette");
+            System.out.println("3). BlackJack");
+            System.out.println("4). High or Low");
+            System.out.println("Input: ");
+            int input = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.println("Welcome! Please Make a Selection");
-        System.out.println("1). Slots");
-        System.out.println("2). Roulette");
-        System.out.println("3). BlackJack");
-        System.out.println("4). TBA");
-        System.out.println("Input: ");
-        int input = scanner.nextInt();
-        scanner.nextLine();
-
-        switch (input){
-            case 1 -> runSlots(player, scanner);
-            case 2 -> runRoulette(player, scanner);
-            case 3 -> runBlackJack(player, scanner);
-            case 4 -> runHighLow(player, scanner);
-            default -> System.out.println("==========");
+            switch (input) {
+                case 1 -> runSlots(player, scanner);
+                case 2 -> runRoulette(player, scanner);
+                case 3 -> runBlackJack(player, scanner);
+                case 4 -> runHighLow(player, scanner);
+                default -> {
+                    return;
+                }
+            }
         }
 
     }
