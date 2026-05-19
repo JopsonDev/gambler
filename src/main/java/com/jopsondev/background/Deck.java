@@ -12,6 +12,7 @@ public class Deck {
         this.deck = new ArrayList<>();
         this.hand = new ArrayList<>();
     }
+
     public void shuffle() {
         String deckType = "A, K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2";
         String suit = "Heart, Spade, Diamond, Club";

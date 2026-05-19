@@ -11,7 +11,7 @@ public class Main {
         system.display();
         //add slot display have it print different symbols before landing on correct one
         //add bonus spins
-        //switch the switch case to if state to have better probability spins
+        //switch the switch case to if state to have better probability spins DONE
         // maybe make a slot machine with askey art DONE
 
 

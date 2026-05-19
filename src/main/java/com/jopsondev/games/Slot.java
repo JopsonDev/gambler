@@ -21,21 +21,18 @@ public class Slot implements IsBet {
     public int result(){
         Random rand = new Random();
 
-        int r1 = rand.nextInt(5);
+        int r1 = rand.nextInt(100);
 
-        switch(r1){
-            case 2 -> {
-                return  5;
-            }
-            case 3 -> {
-                return 10;
-            }
-            case 4 -> {
-                return 15;
-            }
-            default -> {
-                return 0;
-            }
+        if (r1 < 40){
+            return 0;
+        } else if (r1 < 75) {
+            return 5;
+        } else if (r1 < 90) {
+            return 10;
+        } else if (r1 < 100) {
+            return 15;
+        } else {
+            return 0;
         }
     }
 
