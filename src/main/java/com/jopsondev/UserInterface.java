@@ -22,6 +22,7 @@ public class UserInterface extends CasinoGame {
             System.out.println("2). Roulette");
             System.out.println("3). BlackJack");
             System.out.println("4). High or Low");
+            System.out.println("5). Check and/or Add to Balance");
             System.out.println("99). Quit");
             System.out.print("Input: ");
             if(!scanner.hasNextInt()){
@@ -36,10 +37,32 @@ public class UserInterface extends CasinoGame {
                     case 2 -> runRoulette(player, scanner);
                     case 3 -> runBlackJack(player, scanner);
                     case 4 -> runHighLow(player, scanner);
+                    case 5 -> checkAndAdd(player, scanner);
                     case 99 -> {
                         return;
                     }
                     default -> System.out.println("Invalid input");
+                }
+            }
+        }
+    }
+    public void checkAndAdd(Wallet player, Scanner scanner){
+
+            System.out.println("Current Balance: " + player.getBalance());
+            System.out.print("Deposit funds?(Y/N): ");
+            String input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("Y")) {
+                while(true) {
+                System.out.print("How much would you like to deposit(0 to return): ");
+                if(scanner.hasNextDouble()){
+                    player.addToBalance(scanner.nextDouble());
+                    scanner.nextLine();
+                    System.out.println("Thank You and enjoy!");
+                    break;
+                } else {
+                    System.out.println("Invalid Input");
+                    scanner.nextLine();
                 }
             }
         }

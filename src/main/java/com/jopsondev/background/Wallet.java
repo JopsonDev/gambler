@@ -49,4 +49,8 @@ public class Wallet {
     public void clearHand(){
         hand.clear();
     }
+
+    public void addToBalance(double money){
+        balance += money;
+    }
 }
