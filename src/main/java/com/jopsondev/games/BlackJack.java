@@ -87,6 +87,7 @@ public class BlackJack extends Deck implements IsBet {
             System.out.print("Place your bets or X to return: ");
 
             if(!scanner.hasNextDouble()){
+                scanner.nextLine();
                 return 0;
             } else {
                 double bet = scanner.nextDouble();
@@ -104,7 +105,7 @@ public class BlackJack extends Deck implements IsBet {
 
     public double winBlackJack(int player, int dealer, double bet) {
         double total = 0;
-        if(player > dealer && player < 21){
+        if ((player > dealer && player < 21) || (dealer > 21 && player < 21)){
             total = bet * 2;
         } else if (player == 21 && dealer != 21) {
             total = bet * 2.5;

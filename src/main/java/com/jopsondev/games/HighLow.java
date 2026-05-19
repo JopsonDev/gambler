@@ -14,36 +14,45 @@ public class HighLow extends Deck implements IsBet {
         System.out.println(player.getHand());
     }
 
-    public void playingGame(Wallet player, Scanner scanner){
-        currentHand(player);
+    public void playingGame(Wallet player, Scanner scanner) {
         System.out.print("\n");
+        currentHand(player);
 
+        while (player.getBalance() > 0) {
+            System.out.println("\nCurrent balance: " + player.getBalance());
 
-        while(true) {
             double bet = bet(player, scanner);
+
+            if (bet <= 0) {
+                break;
+            }
+
             int score = totalTrueValue(player);
             double totalWin = 0;
-            System.out.println("Will the next card be higher or lower? X to cash out");
+
+            System.out.println("Will the next card be higher or lower?");
             String input = scanner.nextLine();
 
-            if(input.equalsIgnoreCase("X")){
-                System.out.println("Finish");
-                break;
+            if (!input.equalsIgnoreCase("Lower") && !input.equalsIgnoreCase("Higher")) {
+                System.out.println("Invalid entry");
+                continue;
             }
 
             currentHand(player);
             System.out.print("\n");
+
             int newCard = totalTrueValue(player);
 
             if (score < newCard && input.equalsIgnoreCase("Higher")) {
-                System.out.println("Winner\n");
+                System.out.println("Winner");
                 totalWin = win(bet);
             } else if (score > newCard && input.equalsIgnoreCase("Lower")) {
-                System.out.println("Winner\n");
+                System.out.println("Winner");
                 totalWin = win(bet);
             } else {
-                System.out.println("Loser\n");
+                System.out.println("Loser");
             }
+
             player.lose(bet);
             player.gain(totalWin);
         }
@@ -52,10 +61,14 @@ public class HighLow extends Deck implements IsBet {
     @Override
     public double bet(Wallet player, Scanner scanner) {
         while(true) {
-            System.out.print("Place your bets or X to return: ");
+            System.out.print("Place your bets or X to forfeit round: ");
 
             if(!scanner.hasNextDouble()){
-                return 0;
+                if(scanner.nextLine().equalsIgnoreCase("X")) {
+                    return 0;
+                } else {
+                    System.out.println("Invalid Input");
+                }
             } else {
                 double bet = scanner.nextDouble();
                 scanner.nextLine();

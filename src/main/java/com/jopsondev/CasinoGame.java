@@ -35,7 +35,7 @@ public class CasinoGame {
 
             double bet = bj.bet(player, scanner);
             if (bet <= 0){
-                break;
+                return;
             }
             bj.shuffle();
             bj.dealerStarting(dealer);

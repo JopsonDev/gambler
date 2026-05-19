@@ -9,9 +9,9 @@ public class UserInterface extends CasinoGame {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("New User please Deposit an amount and add name.");
-        System.out.println("Name: ");
+        System.out.print("Name: ");
         String name = scanner.nextLine();
-        System.out.println("Deposit: ");
+        System.out.print("Deposit: ");
         double deposit = scanner.nextDouble();
         scanner.nextLine();
 
@@ -22,20 +22,26 @@ public class UserInterface extends CasinoGame {
             System.out.println("2). Roulette");
             System.out.println("3). BlackJack");
             System.out.println("4). High or Low");
-            System.out.println("Input: ");
-            int input = scanner.nextInt();
-            scanner.nextLine();
+            System.out.println("99). Quit");
+            System.out.print("Input: ");
+            if(!scanner.hasNextInt()){
+                System.out.println("invalid input");
+                scanner.nextLine();
+            } else {
+                int input = scanner.nextInt();
+                scanner.nextLine();
 
-            switch (input) {
-                case 1 -> runSlots(player, scanner);
-                case 2 -> runRoulette(player, scanner);
-                case 3 -> runBlackJack(player, scanner);
-                case 4 -> runHighLow(player, scanner);
-                default -> {
-                    return;
+                switch (input) {
+                    case 1 -> runSlots(player, scanner);
+                    case 2 -> runRoulette(player, scanner);
+                    case 3 -> runBlackJack(player, scanner);
+                    case 4 -> runHighLow(player, scanner);
+                    case 99 -> {
+                        return;
+                    }
+                    default -> System.out.println("Invalid input");
                 }
             }
         }
-
     }
 }
