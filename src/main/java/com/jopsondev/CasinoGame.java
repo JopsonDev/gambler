@@ -2,6 +2,7 @@ package com.jopsondev;
 
 import com.jopsondev.background.Wallet;
 import com.jopsondev.games.BlackJack;
+import com.jopsondev.games.HighLow;
 import com.jopsondev.games.Roulette;
 import com.jopsondev.games.Slot;
 
@@ -51,5 +52,11 @@ public class CasinoGame {
 
             System.out.println(player.getBalance());
         }
+    }
+
+    public void runHighLow(Wallet player, Scanner scanner){
+        HighLow game = new HighLow();
+        game.shuffle();
+        game.playingGame(player, scanner);
     }
 }
