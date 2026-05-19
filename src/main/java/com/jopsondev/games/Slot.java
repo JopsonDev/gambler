@@ -13,37 +13,68 @@ public class Slot implements IsBet {
       int r3 = result();
 
       int score = r1 + r2 + r3;
+      slotDisplay(r1, r2, r3);
       System.out.println(score);
       return score;
     }
 
     public int result(){
-        int K = 15;
-        int Q = 10;
-        int J = 5;
         Random rand = new Random();
 
         int r1 = rand.nextInt(5);
-        int score = 0;
+
         switch(r1){
-            case 0,1 -> System.out.println("X");
             case 2 -> {
-                System.out.println("J");
-                score += J;
+                return  5;
             }
             case 3 -> {
-                System.out.println("Q");
-                score += Q;
+                return 10;
             }
             case 4 -> {
-                System.out.println("K");
-                score += K;
+                return 15;
             }
-            default -> System.out.println("X");
+            default -> {
+                return 0;
+            }
         }
-        return(score);
     }
 
+    public void slotDisplay(int r1, int r2, int r3){
+        String p1 = slotIcons(r1);
+        String p2 = slotIcons(r2);
+        String p3 = slotIcons(r3);
+        System.out.println("                                 _________   \n" +
+                "                             ___/=========\\\\___\n" +
+                "                           /  o  o  o  o  o   \\\\\n" +
+                "                          /_____________________\\\\\n" +
+                "                          ||   SLOT MACHINE     ||\n" +
+                "                  ________||====================||________\n" +
+                "                /      o   o   o   o   o   o    o       \\\\\n" +
+                "               /_________________________________________\\\\\n" +
+                "              |      __________ ___________ __________    |\n" +
+                "              |     |          |           |          |   |\n" +
+                "              |     |    "+p1+"     |     "+p2+"     |     "+p3+"    |   |\n" +
+                "              |     |          |           |          |   |\n" +
+                "              |     |__________|___________|__________|   |\n" +
+                "              |    ___________________________________    |\n" +
+                "              |  /_____________________________________\\\\\\\\\n" +
+                "              |  |       ___       ___       ___         ||\n" +
+                "              |  |      |___|     |___|     |___|        ||\n" +
+                "              |  |                                  ()   ||\n" +
+                "              |  |_______________________________________||\n" +
+                "              |/__________________________________________|");
+    }
+
+    public String slotIcons(int r){
+        String result;
+        switch(r){
+            case 5 -> result = "J";
+            case 10 -> result = "Q";
+            case 15 -> result = "K";
+            default -> result = "X";
+        }
+        return result;
+    }
     @Override
     public double bet(Wallet player, Scanner scanner) {
         while(true){
