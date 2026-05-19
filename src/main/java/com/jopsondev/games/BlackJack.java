@@ -1,5 +1,6 @@
 package com.jopsondev.games;
 
+import com.jopsondev.background.IsBet;
 import com.jopsondev.background.Wallet;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class BlackJack {
+public class BlackJack implements IsBet {
     private List<String> hand;
     private List<String> deck;
 
@@ -123,7 +124,7 @@ public class BlackJack {
     }
 
     public void dealerPlay(Wallet player) {
-        List<Integer> totalList = findValue(player);
+        List<Integer> totalList;
         int total = totalTrueValue(player);
 
         while (total < 17) {
@@ -136,5 +137,38 @@ public class BlackJack {
             System.out.println(player.getHand());
             System.out.println("Dealer " + total);
         }
+    }
+
+    @Override
+    public double bet(Wallet player, Scanner scanner) {
+        while(true) {
+            System.out.print("Place your bets or X to return: ");
+
+            if(!scanner.hasNextDouble()){
+                return 0;
+            } else {
+                double bet = scanner.nextDouble();
+                scanner.nextLine();
+
+                if(bet <= player.getBalance()){
+                    return bet;
+                } else {
+                    System.out.println("Not Enough");
+                }
+            }
+
+        }
+    }
+
+    public double winBlackJack(int player, int dealer, double bet) {
+        double total = 0;
+        if(player > dealer && player < 21){
+            total = bet * 2;
+        } else if (player == 21 && dealer != 21) {
+            total = bet * 2.5;
+        } else if (player == dealer){
+            total = bet;
+        }
+        return total;
     }
 }

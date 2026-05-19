@@ -12,28 +12,44 @@ public class CasinoGame {
     public void runSlots(Wallet player, Scanner scanner){
         Slot slot = new Slot();
         double bet = slot.bet(player, scanner);
-        slot.win(player, slot.reels(), bet);
+        slot.winSlots(player, slot.reels(), bet);
         System.out.println(player.getBalance());
     }
 
     public void runRoulette(Wallet player, Scanner scanner){
         Roulette roulette = new Roulette();
         double bet = roulette.bet(player, scanner);
-        double win = roulette.win(player, 0, 0);
-        player.setBalance(player.getBalance() - bet);
-        player.setBalance(player.getBalance() + win);
+        double win = roulette.winRoulette();
+        player.lose(bet);
+        player.gain(win);
         System.out.println(player.getBalance());
     }
 
     public void runBlackJack(Wallet player, Scanner scanner){
         BlackJack bj = new BlackJack();
         Wallet dealer = new Wallet("Dealer", 100000);
-        bj.shuffle();
-        bj.dealerStarting(dealer);
-        bj.saveHand(player, 2);
-        System.out.println(player.getHand());
-        bj.findValue(player);
-        bj.hitOrStand(player, scanner);
-        bj.dealerPlay(dealer);
+        while (player.getBalance() > 0) {
+            player.clearHand();
+            dealer.clearHand();
+
+            double bet = bj.bet(player, scanner);
+            if (bet <= 0){
+                break;
+            }
+            bj.shuffle();
+            bj.dealerStarting(dealer);
+
+            bj.saveHand(player, 2);
+            System.out.println(player.getHand());
+
+            bj.findValue(player);
+            bj.hitOrStand(player, scanner);
+            bj.dealerPlay(dealer);
+
+            player.lose(bet);
+            player.gain(bj.winBlackJack(bj.totalTrueValue(player), bj.totalTrueValue(dealer), bet));
+
+            System.out.println(player.getBalance());
+        }
     }
 }

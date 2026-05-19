@@ -45,8 +45,8 @@ public class Roulette implements IsBet {
         return totalBet;
     }
 
-    @Override
-    public double win(Wallet player, int score, double bet) {
+
+    public double winRoulette() {
         int result = spin();
         double winnings = 0;
         for (int i = 0; i < numbers.size(); i++){

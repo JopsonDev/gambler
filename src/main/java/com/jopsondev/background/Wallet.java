@@ -45,4 +45,8 @@ public class Wallet {
     public void getCurrentHand(List<String> hand){
         this.hand = hand;
     }
+
+    public void clearHand(){
+        hand.clear();
+    }
 }

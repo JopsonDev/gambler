@@ -59,8 +59,8 @@ public class Slot implements IsBet {
         }
     }
 
-    @Override
-    public double win(Wallet player, int score, double bet) {
+
+    public double winSlots(Wallet player, int score, double bet) {
         double win = bet + (score * .15) * bet;
         player.gain(win);
         return win;
