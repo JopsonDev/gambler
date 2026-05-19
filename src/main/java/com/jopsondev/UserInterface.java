@@ -30,7 +30,7 @@ public class UserInterface extends CasinoGame {
             case 1 -> runSlots(player, scanner);
             case 2 -> runRoulette(player, scanner);
             case 3 -> runBlackJack(player, scanner);
-            case 4 -> System.out.println("==========");
+            case 4 -> runHighLow(player, scanner);
             default -> System.out.println("==========");
         }
 
