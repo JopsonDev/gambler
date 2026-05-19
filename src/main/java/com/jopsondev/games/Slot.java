@@ -3,8 +3,7 @@ package com.jopsondev.games;
 import com.jopsondev.background.IsBet;
 import com.jopsondev.background.Wallet;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Slot implements IsBet {
     public int reels() {
@@ -65,12 +64,33 @@ public class Slot implements IsBet {
     public String slotIcons(int r){
         String result;
         switch(r){
-            case 5 -> result = "J";
+            case 5 -> result ="J";
             case 10 -> result = "Q";
             case 15 -> result = "K";
             default -> result = "X";
         }
         return result;
+    }
+
+    public void slotPrint(String reel){
+        List<String> symbols = Arrays.asList("K", "J", "Q", "X", "K", "Q", "J", "X", "K", "K",
+                "Q", "J", "X", "Q", "K", "J", "X", "Q", "K", "X");
+
+        int length = symbols.size();
+        int x = 10;
+        for(int i = 0; i < length; i++){
+            System.out.print("\r" + symbols.get(i));
+            x += 10;
+            if(i > length - 3){
+                x += 600;
+            }
+            try {
+                Thread.sleep(x);
+            } catch (Exception e){
+                System.out.println("X");
+            }
+        }
+        System.out.print("\r" + reel);
     }
     @Override
     public double bet(Wallet player, Scanner scanner) {
