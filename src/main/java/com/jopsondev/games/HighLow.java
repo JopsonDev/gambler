@@ -30,10 +30,10 @@ public class HighLow extends Deck implements IsBet {
             int score = totalTrueValue(player, "HL");
             double totalWin = 0;
 
-            System.out.println("Will the next card be higher or lower?");
+            System.out.println("Will the next card be higher or lower?(H/L)");
             String input = scanner.nextLine();
 
-            if (!input.equalsIgnoreCase("Lower") && !input.equalsIgnoreCase("Higher")) {
+            if (!input.equalsIgnoreCase("L") && !input.equalsIgnoreCase("H")) {
                 System.out.println("Invalid entry");
                 continue;
             }
@@ -43,14 +43,19 @@ public class HighLow extends Deck implements IsBet {
 
             int newCard = totalTrueValue(player, "HL");
 
-            if (score < newCard && input.equalsIgnoreCase("Higher")) {
-                System.out.println("Winner");
-                totalWin = win(bet);
-            } else if (score > newCard && input.equalsIgnoreCase("Lower")) {
-                System.out.println("Winner");
-                totalWin = win(bet);
+            if(score != newCard) {
+                if (score < newCard && input.equalsIgnoreCase("H")) {
+                    System.out.println("Winner");
+                    totalWin = win(bet);
+                } else if (score > newCard && input.equalsIgnoreCase("L")) {
+                    System.out.println("Winner");
+                    totalWin = win(bet);
+                } else {
+                    System.out.println("Loser");
+                }
             } else {
-                System.out.println("Loser");
+                System.out.println("Tie bet returned");
+                totalWin = bet;
             }
 
             player.lose(bet);

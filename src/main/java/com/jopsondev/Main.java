@@ -17,7 +17,7 @@ public class Main {
         //switch the switch case to if state to have better probability spins DONE
         //maybe make a slot machine with askey art DONE
         //hi and low thinks that 10 J Q K are all valued at 10 FIXED
-        //HL loses if there's a tie
+        //HL loses if there's a tie FIXED
         //maybe in value method do a another parameter and just put String game and an if statement DONE
 
     }
