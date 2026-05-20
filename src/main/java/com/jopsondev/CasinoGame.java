@@ -43,12 +43,12 @@ public class CasinoGame {
             bj.saveHand(player, 2);
             System.out.println(player.getHand());
 
-            bj.findValue(player);
+            bj.findValue(player, "blackjack");
             bj.hitOrStand(player, scanner);
             bj.dealerPlay(dealer);
 
             player.lose(bet);
-            player.gain(bj.winBlackJack(bj.totalTrueValue(player), bj.totalTrueValue(dealer), bet));
+            player.gain(bj.winBlackJack(bj.totalTrueValue(player, "blackjack"), bj.totalTrueValue(dealer, "blackjack"), bet));
 
             System.out.println(player.getBalance());
         }

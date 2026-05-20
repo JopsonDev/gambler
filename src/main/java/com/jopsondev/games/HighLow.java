@@ -27,7 +27,7 @@ public class HighLow extends Deck implements IsBet {
                 break;
             }
 
-            int score = totalTrueValue(player);
+            int score = totalTrueValue(player, "HL");
             double totalWin = 0;
 
             System.out.println("Will the next card be higher or lower?");
@@ -41,7 +41,7 @@ public class HighLow extends Deck implements IsBet {
             currentHand(player);
             System.out.print("\n");
 
-            int newCard = totalTrueValue(player);
+            int newCard = totalTrueValue(player, "HL");
 
             if (score < newCard && input.equalsIgnoreCase("Higher")) {
                 System.out.println("Winner");

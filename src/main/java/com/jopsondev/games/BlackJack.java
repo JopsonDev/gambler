@@ -18,7 +18,7 @@ public class BlackJack extends Deck implements IsBet {
 
     public void hitOrStand(Wallet player, Scanner scanner) {
         List<Integer> totalList;
-        int total = totalTrueValue(player);
+        int total = totalTrueValue(player, "blackjack");
         System.out.println(total);
         while (total < 21) {
             System.out.print("Hit or Stand: ");
@@ -26,8 +26,8 @@ public class BlackJack extends Deck implements IsBet {
 
             if (input.equalsIgnoreCase("hit")) {
                 saveHand(player, 1);
-                totalList = findValue(player);
-                total = totalTrueValue(player);
+                totalList = findValue(player, "blackjack");
+                total = totalTrueValue(player, "blackjack");
 
                 if (total > 21){
                     total = aceAdjuster(total, totalList);
@@ -67,12 +67,12 @@ public class BlackJack extends Deck implements IsBet {
 
     public void dealerPlay(Wallet player) {
         List<Integer> totalList;
-        int total = totalTrueValue(player);
+        int total = totalTrueValue(player, "blackjack");
 
         while (total < 17) {
             saveHand(player, 1);
-            totalList = findValue(player);
-            total = totalTrueValue(player);
+            totalList = findValue(player, "blackjack");
+            total = totalTrueValue(player, "blackjack");
 
             total = aceAdjuster(total,totalList);
 
