@@ -101,7 +101,6 @@ public class Slot implements IsBet {
             if(player.getBalance() < bet || bet < 0){
                 System.out.println("Invalid bet");
             } else {
-                player.lose(bet);
                 return bet;
             }
         }
@@ -109,7 +108,11 @@ public class Slot implements IsBet {
 
 
     public double winSlots(Wallet player, int score, double bet) {
-        double win = bet + (score * .15) * bet;
+        double win = 0;
+        if(score > 0) {
+            win = bet + (score * .025 * bet);
+        }
+        System.out.println(win);
         player.gain(win);
         return win;
     }
