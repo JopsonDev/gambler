@@ -12,21 +12,19 @@ public class CasinoGame {
 
     public void runSlots(Wallet player, Scanner scanner){
         Slot slot = new Slot();
-        double bet = slot.bet(player, scanner);
-        scanner.nextLine();
         while(player.getBalance() > 0) {
-            player.lose(bet);
-            slot.winSlots(player, slot.reels(), bet);
-            System.out.println(player.getBalance());
-
-            System.out.print("Bet to spin again or X to exit: ");
-            if(scanner.hasNextDouble()){
-                double amount = scanner.nextDouble();
-                bet = amount;
-            } else {
-                scanner.nextLine();
-                return;
+            while (true) {
+                double bet = slot.bet(player, scanner);
+                if(bet > 0){
+                    player.lose(bet);
+                    slot.winSlots(player, slot.reels(), bet);
+                    System.out.println(player.getBalance());
+                } else {
+                    return;
+                }
             }
+
+
         }
     }
 

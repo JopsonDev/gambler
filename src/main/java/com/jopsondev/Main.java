@@ -14,7 +14,7 @@ public class Main {
         slot.reels();*/
         //add slot display have it print different symbols before landing on correct one (mite not work with askey slot picture)
         //add bonus spins
-        //make slots keep spining
+        //make slots keep spining DONE
 
     }
 }
