@@ -17,6 +17,8 @@ public class Slot implements IsBet {
             score *= 5;
         } else if (r1 == r2 || r2 == r3 || r1 == r3) {
             score *= 2;
+        } else if (score == 90) {
+            System.out.println("Bonus");
         }
         slotDisplay(r1, r2, r3);
         System.out.println(score);
@@ -28,14 +30,16 @@ public class Slot implements IsBet {
 
         int r1 = rand.nextInt(100);
 
-        if (r1 < 40) {
+        if (r1 < 40){
             return 0;
         } else if (r1 < 75) {
             return 5;
-        } else if (r1 < 90) {
+        } else if (r1 < 85) {
             return 10;
-        } else if (r1 < 100) {
+        } else if (r1 < 90) {
             return 15;
+        } else if (r1 < 100){
+            return 30;
         } else {
             return 0;
         }
@@ -73,6 +77,7 @@ public class Slot implements IsBet {
             case 5 -> result = "J";
             case 10 -> result = "Q";
             case 15 -> result = "K";
+            case 30 -> result = ":D";
             default -> result = "X";
         }
         return result;
